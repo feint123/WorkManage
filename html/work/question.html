@@ -55,7 +55,7 @@
 
         </div>
     </div>
-    <div class="jumbotron sgray-8 padding-8">
+    <div class="jumbotron sgray-8 padding-8" ng-hide="!submited">
         <div class="row ">
             <div class="column col-xs-12 "><h5 >*信息提交成功,可以选择继续编辑或返回首页</h5></div>
         </div>
@@ -64,7 +64,7 @@
                 <a href="index.html" class="btn btn-default normal-red">返回首页</a>
             </div>
             <div class="column col-xs-3">
-                <button ng-click="reset" class="btn btn-default normal-blue">继续编辑</button>
+                <button ng-click="reset()" class="btn btn-default normal-blue">继续编辑</button>
             </div>
         </div>
     </div>
@@ -77,26 +77,32 @@
 <script src="../../js/globle.js"></script>
 
 <script>
+    function deleteCondition(id) {
+        $("#"+id).remove();
+    }
     var app=angular.module('question',[]);
     app.controller('questionController',function($scope,$http){
         $("#app").css("display","block");
         $scope.conditionId=0;
+        $scope.submited=false;
         $scope.type=$.cookie("ques_type");
-
-        $scope.deleteCondition=function (id) {
-            $("#"+id).remove();
-        }
 
         $scope.addCondition=function () {
             $("#addQues").after("<div class=\"form-group\" id='"+$scope.conditionId+"'>"+
                     "<div class=\"col-xs-10\">"+
                     "<input type=\"text\" class=\"form-control condition\" />"+
-                    "</div><div class='row col-xs-2'><button type='button' ng-click='deleteCondition("+$scope.conditionId
+                    "</div><div class='row col-xs-2'><button type='button' onclick='deleteCondition("+$scope.conditionId
                     +")' class='btn btn-default normal-red'>X</button> </div> </div>");
 
             $scope.conditionId=$scope.conditionId+1;
         }
-
+        $scope.reset=function () {
+            $("input[name='title']").val("");
+            $("textarea[name='content']").val("");
+            for(var i=0;i<$scope.conditionId;i++){
+                $("#"+i).remove();
+            }
+        }
         $scope.submitInfo=function () {
             $scope.condition="";
             $(".condition").each(function () {
@@ -116,7 +122,7 @@
             $scope.data={"data":$scope.question}
             console.log(JSON.stringify($scope.data))
             $http.post(workPath("question/publish"),JSON.stringify($scope.data)).success(function (data) {
-
+                $scope.submited=true;
             })
         }
     })
