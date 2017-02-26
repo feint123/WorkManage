@@ -52,8 +52,23 @@
                     </div>
                 </div>
             </form>
+
         </div>
     </div>
+    <div class="jumbotron sgray-8 padding-8">
+        <div class="row ">
+            <div class="column col-xs-12 "><h5 >*信息提交成功,可以选择继续编辑或返回首页</h5></div>
+        </div>
+        <div class="row">
+            <div class="column col-xs-3">
+                <a href="index.html" class="btn btn-default normal-red">返回首页</a>
+            </div>
+            <div class="column col-xs-3">
+                <button ng-click="reset" class="btn btn-default normal-blue">继续编辑</button>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script src="../../js/jquery.min.js"></script>
@@ -101,7 +116,7 @@
             $scope.data={"data":$scope.question}
             console.log(JSON.stringify($scope.data))
             $http.post(workPath("question/publish"),JSON.stringify($scope.data)).success(function (data) {
-                console.log(data.code);
+
             })
         }
     })
