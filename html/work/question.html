@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../styles/place.css">
 </head>
 <body>
-<div class="container" ng-app="question" ng-controller="questionController">
+<div class="container" ng-app="question" ng-controller="questionController" id="app" style="display: none">
     <div id="header" class="normal-blue row padding-8">
         <a href="index.html" class="white padding-hor-8">返回</a>
     </div>
@@ -64,6 +64,7 @@
 <script>
     var app=angular.module('question',[]);
     app.controller('questionController',function($scope,$http){
+        $("#app").css("display","block");
         $scope.conditionId=0;
         $scope.type=$.cookie("ques_type");
 
