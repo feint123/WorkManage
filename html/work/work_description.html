@@ -14,7 +14,7 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="container desc" ng-app="detail" ng-controller="detailController">
+    <div class="container desc" ng-app="detail" ng-controller="detailController" id="app" style="display: none;">
         <div class="row clearfix normal-blue">
             <div class="col-md-12 column ">
                 <div class="jumbotron normal-blue">
@@ -56,6 +56,7 @@
 <script>
     var app=angular.module('detail',[]);
     app.controller('detailController',function ($scope,$http) {
+        $("#app").css("display","block");
         $scope.loadDesc=false;
         $scope.type=$.cookie("ques_type");
         $http.get(workPath("question/detail/"+$.cookie("qid"))).success(function (data) {
