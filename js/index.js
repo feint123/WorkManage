@@ -4,6 +4,7 @@
 $(".quesType").hide();
 var app=angular.module('index',[]);
 app.controller('indexController',function($scope,$http,$location){
+    $("#app").css("display","block")
     $scope.loadList=false;
     $scope.typeShow=false;
     $scope.page=1;
