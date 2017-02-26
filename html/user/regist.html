@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="../../styles/color.css">
+    <link rel="stylesheet" href="../../styles/shadow.css">
+    <link rel="stylesheet" href="../../styles/place.css">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container" ng-app="register" ng-controller="registerController">
+        <div class="row clearfix margin-top-16">
+            <div class="col-md-12 column">
+                <form name="form" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="name" placeholder="请输入真实姓名" ng-model="name" required/>
+                            <span ng-show="form.name.$dirty" class="normal-red sgray-8 padding-hor-8" style="text-align: center;">
+                                <span ng-show="form.name.$error.required">用户名不能为空</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" name="sNum" placeholder="请输入学号" ng-model="sNum" required/>
+                            <span ng-show="form.sNum.$dirty" class="normal-red sgray-8 padding-hor-8" style="text-align: center;">
+                                <span ng-show="form.sNum.$error.required">学号不能为空</span>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPsd" placeholder="密码：长度5-15，不能出现中文"
+                            ng-model="psd"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPsdR" placeholder="确认密码"
+                            ng-model="psdRepeat"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button ng-click="submitInfo()" type="submit" class="btn btn-default btn-block normal-blue">注册</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery.cookie.js"></script>
+    <script src="../../js/angular.js"></script>
+    <script src="../../js/globle.js"></script>
+
+    <script>
+        var app=angular.module('register',[]);
+        app.controller('registerController',function($scope,$http){
+            $scope.submitInfo=function(){
+
+                $scope.user={
+                    "name":$scope.name,
+                    "sNum":$scope.sNum,
+                    "psd":$scope.psd
+                }
+                $http.post(workPath("user/register"),JSON.stringify($scope.user)).success(function (data) {
+                    console.log(data.code);
+                });
+            }
+        })
+    </script>
+</body>
+</html>

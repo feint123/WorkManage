@@ -1,0 +1,22 @@
+.normal-blue{
+    background-color: #0076FF;
+    color:#EEF4FC;
+    border-color: #0076FF;
+}
+
+.normal-red{
+    background-color:#D0021B ;
+    color:#EEF4FC;
+    border-color: #D0021B;
+}
+
+.normal-yellow{
+    background-color: #F5A623;
+    color:#EEF4FC;
+    border-color: #F5A623;
+}
+
+.white{
+    background-color: white;
+    color: #666;
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="../../styles/color.css">
+    <link rel="stylesheet" href="../../styles/shadow.css">
+    <link rel="stylesheet" href="../../styles/place.css">
+</head>
+<body>
+<div class="container" ng-app="question" ng-controller="questionController">
+    <div id="header" class="normal-blue row padding-8">
+        <a href="index.html" class="white padding-hor-8">返回</a>
+    </div>
+    <div class="row clearfix margin-top-16">
+        <div class="col-md-12 column">
+            <form name="form" class="form-horizontal" role="form">
+                <div class="form-group" >
+                    <div class="col-sm-10" ng-switch="type">
+                        <input ng-switch-when="1"  type="text" class="form-control" name="title" placeholder="问题标题：少于15字" ng-model="name" required/>
+                        <input ng-switch-when="2"  type="text" class="form-control" name="title" placeholder="问题标题：少于15字" ng-model="name" required/>
+                        <input ng-switch-when="3"  type="text" class="form-control" name="title" placeholder="投票主题：少于15字" ng-model="name" required/>
+                        <input ng-switch-when="4"  type="text" class="form-control" name="title" placeholder="分组主题：少于15字" ng-model="name" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10" ng-switch="type">
+                        <textarea ng-switch-when="1" type="number" class="form-control" name="content" placeholder="请填写问题的详细描述：15～150字" ng-model="sNum" required></textarea>
+                        <textarea ng-switch-when="2" type="number" class="form-control" name="content" placeholder="请填写问题的详细描述：15～150字" ng-model="sNum" required></textarea>
+                        <textarea ng-switch-when="3" type="number" class="form-control" name="content" placeholder="请解释投票的目的，及大致背景：15～150字" ng-model="sNum" required></textarea>
+                        <textarea ng-switch-when="4" type="number" class="form-control" name="content" placeholder="请介绍分组的背景及作用：15～150字" ng-model="sNum" required></textarea>
+                    </div>
+
+                </div>
+                <div class="form-group" id="addQues">
+                        <div class="column col-xs-2">
+                            <button ng-click="addCondition()" class="btn normal-blue" type="button">+</button>
+                        </div>
+                        <div class="column col-xs-10">
+                            <span ng-show="(type==1||type==2)">添加问题的限定条件</span>
+                            <span ng-show="(type==4)">添加分组</span>
+                            <span ng-show="(type==3)">添加投票选项</span>
+                        </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button ng-click="submitInfo()" type="submit" class="btn btn-default btn-block normal-blue">提交信息</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/jquery.cookie.js"></script>
+<script src="../../js/angular.js"></script>
+<script src="../../js/globle.js"></script>
+
+<script>
+    var app=angular.module('question',[]);
+    app.controller('questionController',function($scope,$http){
+        $scope.conditionId=0;
+        $scope.type=$.cookie("ques_type");
+
+        $scope.deleteCondition=function (id) {
+            $("#"+id).remove();
+        }
+
+        $scope.addCondition=function () {
+            $("#addQues").after("<div class=\"form-group\" id='"+$scope.conditionId+"'>"+
+                    "<div class=\"col-xs-10\">"+
+                    "<input type=\"text\" class=\"form-control condition\" />"+
+                    "</div><div class='row col-xs-2'><button type='button' ng-click='deleteCondition("+$scope.conditionId
+                    +")' class='btn btn-default normal-red'>X</button> </div> </div>");
+
+            $scope.conditionId=$scope.conditionId+1;
+        }
+
+        $scope.submitInfo=function () {
+            $scope.condition="";
+            $(".condition").each(function () {
+                $scope.condition=$scope.condition+"&_&"+$(this).val();
+            })
+            $scope.question={
+                "title":$("input[name='title']").val(),
+                "content":$("textarea[name='content']").val(),
+                "condit":$scope.condition,
+                "difficulty":1,
+                "typeName":"",
+                "type":$scope.type,
+                "publisher":"0"
+
+            }
+
+            $scope.data={"data":$scope.question}
+            console.log(JSON.stringify($scope.data))
+            $http.post(workPath("question/publish"),JSON.stringify($scope.data)).success(function (data) {
+                console.log(data.code);
+            })
+        }
+    })
+</script>
+</body>
+</html>

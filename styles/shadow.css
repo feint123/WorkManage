@@ -1,0 +1,8 @@
+.sgray-8{
+    box-shadow: 0px 1px 8px #ccc;
+    border-radius: 8px;
+}
+
+.sgray-8-no{
+    box-shadow: 0px 1px 8px #ccc;
+}

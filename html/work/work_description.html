@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="../../styles/color.css">
+    <link rel="stylesheet" href="../../styles/shadow.css">
+    <link rel="stylesheet" href="../../styles/place.css">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container" ng-app="detail" ng-controller="detailController">
+        <div class="row clearfix normal-blue">
+            <div class="col-md-12 column ">
+                <div class="jumbotron normal-blue">
+                    <h1 id="title">
+                        {{question.title}}
+                    </h1>
+                    <p id="content">
+                        {{question.content}}
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 row white margin-16 sgray-8" style="min-height: 64px;position:relative; top: -50px;" id="request-list">
+            <center><h5>附加条件</h5></center>
+            <ul style="padding: 0px" ng-show="conditions.length">
+                <li class="normal-yellow margin-8 padding-hor-8 sgray-8" style="text-align: center" ng-repeat="condition in conditions">
+                    {{condition}}
+                </li>
+            </ul>
+            <center>
+                <span class="padding-8" ng-show="!conditions.length">没有任何条件偶</span>
+            </center>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <button type="button" class="btn normal-blue btn-default btn-block">我要解决</button>
+                <button type="button" class="btn normal-blue btn-default btn-block">在线回答</button>
+                <button type="button" class="btn normal-blue btn-default btn-block">进行投票</button>
+                <button type="button" class="btn normal-blue btn-default btn-block">选择分组</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/jquery.cookie.js"></script>
+<script src="../../js/angular.js"></script>
+<script src="../../js/globle.js"></script>
+<script>
+    var app=angular.module('detail',[]);
+    app.controller('detailController',function ($scope,$http) {
+        $http.get(workPath("question/detail/"+$.cookie("qid"))).success(function (data) {
+            if(data.code='Success') {
+                $scope.question = data.data;
+                $scope.conditions=$scope.question.condit.split("&_&");
+            }
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="../../styles/color.css">
+    <link rel="stylesheet" href="../../styles/shadow.css">
+    <link rel="stylesheet" href="../../styles/place.css">
+
+    <title>Title</title>
+</head>
+<body>
+<div ng-app="index" ng-controller="indexController">
+    <div id="header" class="normal-blue container padding-8">
+        <a href="../user/login.html" class="white padding-hor-8">退出</a>
+    </div>
+    <div class="list">
+    <div class="container white sgray-8-no" style="padding-bottom:4px;padding-top:4px;margin-bottom: 8px;" ng-repeat="question in questions">
+
+        <a href="javascript:" ng-click="detail(question.qid)" >
+            <div class="row">
+                <div class="column col-xs-6"><span>{{question.title}}</span></div>
+                <div class="column col-xs-6"> <center><span class="normal-blue padding-hor-8" style="font-size: 12px;">{{question.typeName}}</span></center></div>
+            </div>
+            <div class="row">
+                <div class="column col-xs-12">
+                    <span style="font-size: 12px;">{{question.tip}}...</span>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="container">
+        <center>
+        <div class="row clearfix">
+            <div class="col-xs-12 column">
+                <ul class="pagination ">
+                    <li>
+                        <a href="javascript:" ng-click="prePage()">上一页</a>
+                    </li>
+                    <li><a href="javascript:"> 第{{page}}页 </a></li>
+                    <li>
+                        <a href="javascript:" ng-click="nextPage()">下一页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </center>
+    </div>
+    </div>
+    <div style="position: absolute;bottom:8px;width: 100%;">
+        <div class="container quesType padding-8 sgray-8 margin-16 white" >
+            <button ng-click="editQuestion(1)" class="btn btn-default btn-block white">在线回答</button>
+            <button ng-click="editQuestion(2)" class="btn btn-default btn-block white">离线问题</button>
+            <button ng-click="editQuestion(3)" class="btn btn-default btn-block white">投票</button>
+            <button ng-click="editQuestion(4)" class="btn btn-default btn-block white">随机分组</button>
+        </div>
+        <div class="container">
+            <button ng-click="showQuestionType()" class="btn btn-default btn-block normal-blue">发布问题</button>
+        </div>
+    </div>
+</div>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery.cookie.js"></script>
+    <script src="../../js/angular.js"></script>
+    <script src="../../js/globle.js"></script>
+    <script src="../../js/index.js"></script>
+</body>
+</html>
