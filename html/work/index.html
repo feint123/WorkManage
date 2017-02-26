@@ -16,19 +16,24 @@
 <body>
 <div ng-app="index" ng-controller="indexController">
     <div id="header" class="normal-blue container padding-8">
-        <a href="../user/login.html" class="white padding-hor-8">退出</a>
+        <center><h5>问题列表</h5></center>
     </div>
     <div class="list">
     <div class="container white sgray-8-no" style="padding-bottom:4px;padding-top:4px;margin-bottom: 8px;" ng-repeat="question in questions">
 
         <a href="javascript:" ng-click="detail(question.qid)" >
             <div class="row">
-                <div class="column col-xs-6"><span>{{question.title}}</span></div>
-                <div class="column col-xs-6"> <center><span class="normal-blue padding-hor-8" style="font-size: 12px;">{{question.typeName}}</span></center></div>
+                <div class="column col-xs-6" style="color:#333;"><span>{{question.title}}</span></div>
+                <div class="column col-xs-6"> <center><span class="normal-blue padding-hor-8" style="font-size: 12px;">{{type[question.type]}}</span></center></div>
             </div>
             <div class="row">
                 <div class="column col-xs-12">
-                    <span style="font-size: 12px;">{{question.tip}}...</span>
+                    <span style="font-size: 12px;color: #666">{{question.tip}}...</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column col-xs-12">
+                    <span style="color:#ccc;font-size: 12px;">{{question.upload}}</span>
                 </div>
             </div>
         </a>

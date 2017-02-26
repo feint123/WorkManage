@@ -9,7 +9,20 @@ app.controller('indexController',function($scope,$http,$location){
     $scope.page=1;
     function requestList(page) {
         $http.post(workPath("question/list"),{"data":{"page":page,"type":0,"order":"difficulty"}}).success(function (data) {
-            $scope.questions=data.data.questions;
+            $scope.questions=[];
+            $scope.type=["在线","离线","投票","分组"]
+            data.data.questions.forEach(function (ques) {
+                var date=new Date(ques.upload)
+                var question={
+                    "qid":ques.qid,
+                    "title":ques.title,
+                    "tip":ques.tip,
+                    "upload":date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日",
+                    "type":ques.type
+                }
+                $scope.questions.push(question);
+            })
+
             $scope.pages=data.data.pages;
             $(".list").show();
         })

@@ -14,7 +14,7 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="container" ng-app="detail" ng-controller="detailController">
+    <div class="container desc" ng-app="detail" ng-controller="detailController">
         <div class="row clearfix normal-blue">
             <div class="col-md-12 column ">
                 <div class="jumbotron normal-blue">
@@ -54,12 +54,14 @@
 <script src="../../js/angular.js"></script>
 <script src="../../js/globle.js"></script>
 <script>
+    $(".desc").hide();
     var app=angular.module('detail',[]);
     app.controller('detailController',function ($scope,$http) {
         $http.get(workPath("question/detail/"+$.cookie("qid"))).success(function (data) {
             if(data.code='Success') {
                 $scope.question = data.data;
                 $scope.conditions=$scope.question.condit.split("&_&");
+                $(".desc").show();
             }
         })
     })
