@@ -18,10 +18,10 @@
         <div class="row clearfix normal-blue">
             <div class="col-md-12 column ">
                 <div class="jumbotron normal-blue">
-                    <h1 id="title">
+                    <h1 id="title" ng-hide="!loadDesc">
                         {{question.title}}
                     </h1>
-                    <p id="content">
+                    <p id="content" ng-hide="!loadDesc">
                         {{question.content}}
                     </p>
 
@@ -30,21 +30,21 @@
         </div>
         <div class="col-md-12 row white margin-16 sgray-8" style="min-height: 64px;position:relative; top: -50px;" id="request-list">
             <center><h5>附加条件</h5></center>
-            <ul style="padding: 0px" ng-show="conditions.length">
+            <ul style="padding: 0px" ng-show="conditions.length>0" ng-hide="!loadDesc">
                 <li class="normal-yellow margin-8 padding-hor-8 sgray-8" style="text-align: center" ng-repeat="condition in conditions">
                     {{condition}}
                 </li>
             </ul>
             <center>
-                <span class="padding-8" ng-show="!conditions.length">没有任何条件偶</span>
+                <span class="padding-8" ng-show="conditions.length<=0">没有任何条件偶</span>
             </center>
         </div>
         <div class="row clearfix">
-            <div class="col-md-12 column">
-                <button type="button" class="btn normal-blue btn-default btn-block">我要解决</button>
-                <button type="button" class="btn normal-blue btn-default btn-block">在线回答</button>
-                <button type="button" class="btn normal-blue btn-default btn-block">进行投票</button>
-                <button type="button" class="btn normal-blue btn-default btn-block">选择分组</button>
+            <div class="col-md-12 column" ng-switch="type">
+                <button type="button" ng-switch-when="2" class="btn normal-blue btn-default btn-block">我要解决</button>
+                <button type="button" ng-switch-when="1" class="btn normal-blue btn-default btn-block">在线回答</button>
+                <button type="button" ng-switch-when="3" class="btn normal-blue btn-default btn-block">进行投票</button>
+                <button type="button" ng-switch-when="4" class="btn normal-blue btn-default btn-block">选择分组</button>
             </div>
         </div>
     </div>
@@ -54,14 +54,15 @@
 <script src="../../js/angular.js"></script>
 <script src="../../js/globle.js"></script>
 <script>
-    $(".desc").hide();
     var app=angular.module('detail',[]);
     app.controller('detailController',function ($scope,$http) {
+        $scope.loadDesc=false;
+        $scope.type=$.cookie("ques_type");
         $http.get(workPath("question/detail/"+$.cookie("qid"))).success(function (data) {
             if(data.code='Success') {
                 $scope.question = data.data;
                 $scope.conditions=$scope.question.condit.split("&_&");
-                $(".desc").show();
+                $scope.loadDesc=true;
             }
         })
     })

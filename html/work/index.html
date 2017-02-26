@@ -18,7 +18,7 @@
     <div id="header" class="normal-blue container padding-8">
         <center><h5>问题列表</h5></center>
     </div>
-    <div class="list">
+    <div ng-hide="!loadList">
     <div class="container white sgray-8-no" style="padding-bottom:4px;padding-top:4px;margin-bottom: 8px;" ng-repeat="question in questions">
 
         <a href="javascript:" ng-click="detail(question.qid)" >

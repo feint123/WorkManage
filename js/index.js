@@ -1,10 +1,10 @@
 /**
  * Created by feint on 17/2/25.
  */
-$(".list").hide();
 $(".quesType").hide();
 var app=angular.module('index',[]);
 app.controller('indexController',function($scope,$http,$location){
+    $scope.loadList=false;
     $scope.typeShow=false;
     $scope.page=1;
     function requestList(page) {
@@ -24,7 +24,9 @@ app.controller('indexController',function($scope,$http,$location){
             })
 
             $scope.pages=data.data.pages;
-            $(".list").show();
+
+            $scope.loadList=true;
+
         })
     }
 
