@@ -107,7 +107,8 @@
         $scope.submitInfo=function () {
             $scope.condition="";
             $(".condition").each(function () {
-                $scope.condition=$scope.condition+"&_&"+$(this).val();
+                if($(this).val().length>0)
+                    $scope.condition=$scope.condition+"&_&"+$(this).val();
             })
             $scope.question={
                 "title":$("input[name='title']").val(),

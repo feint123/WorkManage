@@ -25,7 +25,7 @@
                         {{question.title}}
                     </h1>
                     <p id="content" ng-hide="!loadDesc">
-                        {{question.content}}
+                        {{question.content.replaceAll(" ","&nbsp;").replaceAll("\n","&#10;")}}
                     </p>
 
                 </div>
@@ -35,7 +35,7 @@
             <center><h5>附加条件</h5></center>
             <ul style="padding: 0px" ng-show="conditions.length>0" ng-hide="!loadDesc">
                 <li ng-show="condition.length>0" class="normal-yellow margin-8 padding-8 sgray-8" style="text-align: center" ng-repeat="condition in conditions">
-                    {{condition}}
+                    {{condition.replaceAll(" ","&nbsp;")}}
                 </li>
             </ul>
             <center>
