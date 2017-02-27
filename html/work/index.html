@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../styles/color.css">
     <link rel="stylesheet" href="../../styles/shadow.css">
     <link rel="stylesheet" href="../../styles/place.css">
-
+    <link rel="stylesheet" href="../../styles/index.css">
     <title>Title</title>
 </head>
 <body>
@@ -19,13 +19,21 @@
         <center><h5>问题列表</h5></center>
     </div>
     <div ng-hide="!loadList" style="margin-bottom: 50px;margin-top: 50px;">
+        <div class="container">
+            <div class="row padding-8">
+                <div class="column col-xs-3" ng-repeat="order in orders">
+                    <center><a href="javascript:void(0)" class="tab">{{order}}</a></center>
+                </div>
+            </div>
+        </div>
+
     <div class="container white sgray-8-no" style="padding-bottom:4px;padding-top:4px;margin-bottom: 8px;" ng-repeat="question in questions">
 
-        <a href="javascript:" ng-click="detail(question.qid,question.type)" >
+        <a href="javascript:void(0)" ng-click="detail(question.qid,question.type)" >
             <div class="row">
                 <div class="column col-xs-6" style="color:#333;"><span>{{question.title}}</span></div>
                 <div class="column col-xs-6">
-                    <span class="normal-blue padding-hor-8 sgray-8" style="font-size: 12px;display: inline-block">{{type[question.type-1]}}</span>
+                    <span class="normal-blue padding-hor-8 sgray-8" style="font-size: 12px;display: inline-block">{{question.type}}</span>
                 </div>
             </div>
             <div class="row">

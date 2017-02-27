@@ -8,6 +8,7 @@ app.controller('indexController',function($scope,$http,$location){
     $scope.loadList=false;
     $scope.typeShow=false;
     $scope.page=1;
+    $scope.orders=[" 默认 "," 时间 "," 浏览 "," 评论 "];
     function requestList(page) {
         $http.post(workPath("question/list"),{"data":{"page":page,"type":0,"order":"difficulty"}}).success(function (data) {
             $scope.questions=[];
@@ -19,7 +20,7 @@ app.controller('indexController',function($scope,$http,$location){
                     "title":ques.title,
                     "tip":ques.tip,
                     "upload":date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日",
-                    "type":ques.type
+                    "type":$scope.type[ques.type-1]
                 }
                 $scope.questions.push(question);
             })

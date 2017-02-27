@@ -1,0 +1,11 @@
+.tab{
+    color: #333333;
+}
+
+.tab:hover{
+    background-color: #0076FF;
+    color: #f9f9f9;
+    padding:2px 6px;
+    border-radius: 2px;
+    text-decoration: none;
+}
