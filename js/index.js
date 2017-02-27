@@ -10,10 +10,10 @@ app.controller('indexController',function($scope,$http,$location){
     $scope.typeShow=false;
     $scope.page=1;
     $scope.orders=[" 默认 "," 时间 "," 浏览 "," 评论 "];
+    $scope.type=["在线","离线","投票","分组"]
     function requestList(page) {
         $http.post(workPath("question/list"),{"data":{"page":page,"type":0,"order":"difficulty"}}).success(function (data) {
             $scope.questions=[];
-            $scope.type=["在线","离线","投票","分组"]
             data.data.questions.forEach(function (ques) {
                 var date=new Date(ques.upload)
                 var question={
@@ -48,7 +48,8 @@ app.controller('indexController',function($scope,$http,$location){
     }
 
     $scope.detail=function(id,type){
-        $.cookie("ques_type",type);
+        console.log(type+":type");
+        $.cookie("ques_type",$scope.type.indexOf(type)+1);
         $.cookie("qid",id);
         window.location="work_description.html";
     }
