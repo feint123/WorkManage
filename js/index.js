@@ -3,9 +3,7 @@
  */
 $(".quesType").hide();
 var app=angular.module('index',[]);
-app.config(function($httpProvider){
-    $httpProvider.defaults.cache=app.$cacheFactory('myChache',{capacity:20});
-});
+
 app.controller('indexController',function($scope,$http,$location){
     $("#app").css("display","block")
     $scope.loadList=false;
