@@ -34,7 +34,7 @@
         <div class="col-md-12 row white margin-8 sgray-8" style="min-height: 64px;position:relative; top: -50px;" id="request-list">
             <center><h5>附加条件</h5></center>
             <ul style="padding: 0px" ng-show="conditions.length>0" ng-hide="!loadDesc">
-                <li class="normal-yellow margin-8 padding-hor-8 sgray-8" style="text-align: center" ng-repeat="condition in conditions">
+                <li ng-show="condition.length>0" class="normal-yellow margin-8 padding-8 sgray-8" style="text-align: center" ng-repeat="condition in conditions">
                     {{condition}}
                 </li>
             </ul>
