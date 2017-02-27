@@ -47,8 +47,8 @@ app.controller('indexController',function($scope,$http,$location){
     }
 
     $scope.detail=function(id,type){
-        $.cookie("qid",id);
         $.cookie("ques_type",type);
+        $.cookie("qid",id);
         window.location="work_description.html";
     }
 
