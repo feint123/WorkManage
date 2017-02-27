@@ -45,9 +45,8 @@ app.controller('indexController',function($scope,$http,$location){
         requestList($scope.page)
     }
 
-    $scope.detail=function(id,type){
+    $scope.detail=function(id){
         $.cookie("qid",id);
-        $.cookie("ques_type",type);
         window.location="work_description.html";
     }
 
