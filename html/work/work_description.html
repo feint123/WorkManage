@@ -65,8 +65,8 @@
         $("#app").css("display","block");
         $scope.loadDesc=false;
         $scope.subInput=false;
-        $scope.type=$.cookie("ques_type");
-        $http.get(workPath("question/detail/"+$.cookie("qid"))).success(function (data) {
+        $scope.type=fei.cache().getCache("ques_type")
+        $http.get(workPath("question/detail/"+fei.cache().getCache("qid"))).success(function (data) {
             if(data.code='Success') {
                 $scope.question = data.data;
                 $scope.conditions=$scope.question.condit.split("&_&");

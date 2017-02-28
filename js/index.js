@@ -4,7 +4,9 @@
 $(".quesType").hide();
 var app=angular.module('index',[]);
 
-app.controller('indexController',function($scope,$http,$location){
+app.controller('indexController',function($scope,$http){
+    if(fei.cache().getCache("sNum")==undefined)
+        window.location="../user/login.html";
     $("#app").css("display","block")
     $scope.loadList=false;
     $scope.page=1;
@@ -49,9 +51,10 @@ app.controller('indexController',function($scope,$http,$location){
     }
 
     $scope.detail=function(id,type){
-        console.log(type+":type");
-        $.cookie("ques_type",$scope.type.indexOf(type)+1);
-        $.cookie("qid",id);
+        console.log(type+":type")
+        fei.cache().setCache("ques_type",$scope.type.indexOf(type)+1);
+        fei.cache().setCache("qid",id);
+
         window.location="work_description.html";
     }
 

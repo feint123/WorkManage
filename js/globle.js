@@ -2,7 +2,10 @@
  * Created by feint on 17/2/25.
  */
 function workPath(relaPath){
-    return "http://120.77.34.140:8080/"+relaPath;
+     return "http://120.77.34.140:8080/"+relaPath;
+
+    //debug
+    //return "http://localhost:8080/"+relaPath;
 }
 String.prototype.replaceAll=function(oldString,newString){
     return this.replace(new RegExp(oldString,"gm"),newString);
@@ -27,3 +30,29 @@ function show_bottom(id,bottom) {
     });
 }
 
+function CacheUtil() {
+
+}
+CacheUtil.prototype={
+    "getCache":function (key) {
+        if($.cookie("key")!=undefined)
+            return $.cookie("key");
+        else
+            return localStorage.getItem(key);
+    },
+    "setCache":function (key,value) {
+        $.cookie(key,value);
+        localStorage.setItem(key,value);
+    }
+}
+
+function Feint() {
+
+}
+Feint.prototype={
+    "cache":function () {
+        return new CacheUtil();
+    }
+}
+
+var fei=new Feint();
