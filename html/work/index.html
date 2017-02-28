@@ -49,13 +49,6 @@
             </a>
         </div>
 
-        <div ng-show="!loadList">
-            <center>
-                <span>努力加载中</span>
-                <img src="../../resource/img/loading.gif" class="image">
-            </center>
-        </div>
-
         <div class="container">
             <center>
             <div class="row clearfix">
@@ -74,6 +67,14 @@
             </center>
         </div>
     </div>
+
+    <div ng-show="!loadList">
+        <center>
+            <span>努力加载中</span>
+            <img src="../../resource/img/loading.gif" class="image">
+        </center>
+    </div>
+
     <div style="position: fixed;bottom:8px;width: 100%;">
         <div class="container quesType padding-8 sgray-8 margin-16 white" >
             <button ng-click="editQuestion(1)" class="btn btn-default btn-block white">在线回答</button>
