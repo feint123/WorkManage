@@ -13,28 +13,23 @@
 </head>
 <body>
 <div class="container" ng-app="question" ng-controller="questionController" id="app" style="display: none">
-    <div id="header" class="normal-blue container padding-8 header">
-        <a href="index.html" class="padding-hor-8 normal-blue"><h5>返回</h5></a>
+    <div id="header" class="normal-blue container header">
+        <a href="index.html" class="padding-hor-8 normal-blue" style="line-height: 45px;">返回</a>
     </div>
-    <div class="row clearfix " style="margin-top: 66px;">
+    <div class="row clearfix " style="margin-top: 60px;">
         <div class="col-md-12 column">
             <form name="form" class="form-horizontal" role="form">
                 <div class="form-group" >
-                    <div class="col-sm-10" ng-switch="type">
-                        <input ng-switch-when="1"  type="text" class="form-control" name="title" placeholder="问题标题：少于15字" ng-model="name" required/>
-                        <input ng-switch-when="2"  type="text" class="form-control" name="title" placeholder="问题标题：少于15字" ng-model="name" required/>
-                        <input ng-switch-when="3"  type="text" class="form-control" name="title" placeholder="投票主题：少于15字" ng-model="name" required/>
-                        <input ng-switch-when="4"  type="text" class="form-control" name="title" placeholder="分组主题：少于15字" ng-model="name" required/>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="title"
+                               placeholder={{titleHolder[type-1]}} ng-model="name" required/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-10" ng-switch="type">
-                        <textarea ng-switch-when="1" type="number" class="form-control" name="content" placeholder="请填写问题的详细描述：15～150字" ng-model="sNum" required></textarea>
-                        <textarea ng-switch-when="2" type="number" class="form-control" name="content" placeholder="请填写问题的详细描述：15～150字" ng-model="sNum" required></textarea>
-                        <textarea ng-switch-when="3" type="number" class="form-control" name="content" placeholder="请解释投票的目的，及大致背景：15～150字" ng-model="sNum" required></textarea>
-                        <textarea ng-switch-when="4" type="number" class="form-control" name="content" placeholder="请介绍分组的背景及作用：15～150字" ng-model="sNum" required></textarea>
+                    <div class="col-sm-10" >
+                        <textarea  type="number" class="form-control" name="content"
+                                   placeholder="{{descHolder[type-1]}}" ng-model="sNum" required></textarea>
                     </div>
-
                 </div>
                 <div class="form-group" id="addQues">
                         <div class="column col-xs-2">
@@ -86,7 +81,12 @@
         $scope.conditionId=0;
         $scope.submited=false;
         $scope.type=$.cookie("ques_type");
-
+        $scope.descHolder=["请填写问题的详细描述：15～150字",
+            "请解释投票的目的，及大致背景：15～150字",
+            "请介绍分组的背景及作用：15～150字"];
+        $scope.titleHolder=["问题标题：少于15字",
+        "投票主题：少于15字",
+        "分组主题：少于15字"];
         $scope.addCondition=function () {
             $("#addQues").after("<div class=\"form-group\" id='"+$scope.conditionId+"'>"+
                     "<div class=\"col-xs-10\">"+
