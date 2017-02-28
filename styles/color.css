@@ -10,6 +10,12 @@
     border-color: #D0021B;
 }
 
+.normal-gray{
+    background-color: #cccccc;
+    border-color: #ccc;
+    color: #0f0f0f;
+}
+
 .normal-yellow{
     background-color: #F5A623;
     color:#EEF4FC;

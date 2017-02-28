@@ -42,9 +42,15 @@
                 <span class="padding-8" ng-show="conditions.length<=0">没有任何条件偶</span>
             </center>
         </div>
-        <div class="normal-blue padding-8" style="position: fixed; width: 100%;left: 0px;bottom: 0px;">
-            <div class="container">
-                <input type="text" class="sgray-8 padding-hor-8" placeholder="说出你的见解......" contenteditable="false" ng-click=""/>
+        <div class="normal-gray padding-8" style="position: fixed; width: 100%;left: 0px;bottom: 0px;">
+            <div class="container" ng-show="!subInput">
+                <input type="text" class="normal-border padding-hor-8" placeholder="说出你的见解......" readonly="readonly" ng-click="changeSubInput()"/>
+            </div>
+
+            <div class="container" ng-show="subInput" >
+                <textarea class="form-control" id="submit" placeholder="说出你的见解......(少于300字)"
+                          style="height: 150px;resize: none"></textarea>
+                <button class="pull-right btn btn-default normal-blue">发表</button>
             </div>
         </div>
     </div>
@@ -58,6 +64,7 @@
     app.controller('detailController',function ($scope,$http) {
         $("#app").css("display","block");
         $scope.loadDesc=false;
+        $scope.subInput=false;
         $scope.type=$.cookie("ques_type");
         $http.get(workPath("question/detail/"+$.cookie("qid"))).success(function (data) {
             if(data.code='Success') {
@@ -66,6 +73,12 @@
                 $scope.loadDesc=true;
             }
         })
+
+        $scope.changeSubInput=function () {
+            console.log("click")
+            $scope.subInput=!$scope.subInput;
+            $("#submit").focus();
+        }
     })
 </script>
 </html>
