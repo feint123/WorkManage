@@ -11,7 +11,9 @@ app.controller('indexController',function($scope,$http,$location){
     $scope.page=1;
     $scope.orders=[" 默认 "," 时间 "," 浏览 "," 评论 "];
     $scope.type=["在线","离线","投票","分组"]
+
     function requestList(page) {
+        $scope.loadList=false;
         $http.post(workPath("question/list"),{"data":{"page":page,"type":0,"order":"difficulty"}}).success(function (data) {
             $scope.questions=[];
             data.data.questions.forEach(function (ques) {
