@@ -42,12 +42,9 @@
                 <span class="padding-8" ng-show="conditions.length<=0">没有任何条件偶</span>
             </center>
         </div>
-        <div style="position: fixed;bottom: 8px; width: 100%;left: 0px;">
-            <div class="container" ng-switch="type">
-                <button type="button" ng-switch-when="2" class="btn normal-blue btn-default btn-block">我要解决</button>
-                <button type="button" ng-switch-when="1" class="btn normal-blue btn-default btn-block">在线回答</button>
-                <button type="button" ng-switch-when="3" class="btn normal-blue btn-default btn-block">进行投票</button>
-                <button type="button" ng-switch-when="4" class="btn normal-blue btn-default btn-block">选择分组</button>
+        <div class="normal-blue padding-8" style="position: fixed; width: 100%;left: 0px;bottom: 0px;">
+            <div class="container">
+                <input type="text" class="sgray-8 padding-hor-8" placeholder="说出你的见解......" contenteditable="false" ng-click=""/>
             </div>
         </div>
     </div>

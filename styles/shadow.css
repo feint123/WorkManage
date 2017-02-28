@@ -1,6 +1,7 @@
 .sgray-8{
     box-shadow: 0px 1px 8px #ccc;
     border-radius: 8px;
+    border:none;
 }
 
 .sgray-8-no{
