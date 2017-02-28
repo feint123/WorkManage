@@ -7,7 +7,6 @@ var app=angular.module('index',[]);
 app.controller('indexController',function($scope,$http,$location){
     $("#app").css("display","block")
     $scope.loadList=false;
-    $scope.typeShow=false;
     $scope.page=1;
     $scope.orders=[" 默认 "," 时间 "," 浏览 "," 评论 "];
     $scope.type=["在线","离线","投票","分组"]
@@ -54,14 +53,6 @@ app.controller('indexController',function($scope,$http,$location){
         $.cookie("ques_type",$scope.type.indexOf(type)+1);
         $.cookie("qid",id);
         window.location="work_description.html";
-    }
-
-    $scope.showQuestionType=function () {
-        if($scope.typeShow) {
-            $(".quesType").hide();
-        }else
-            $(".quesType").show();
-        $scope.typeShow=!$scope.typeShow;
     }
 
     $scope.editQuestion=function (type) {

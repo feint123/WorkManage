@@ -80,18 +80,27 @@
 
 
 
-    <div style="position: fixed;bottom:8px;width: 100%;">
-        <div class="container quesType padding-8 sgray-8 margin-16 white" >
-            <button ng-click="editQuestion(1)" class="btn btn-default btn-block white">问答</button>
-            <button ng-click="editQuestion(2)" class="btn btn-default btn-block white">投票</button>
-            <button ng-click="editQuestion(3)" class="btn btn-default btn-block white">随机分组</button>
+        <div class="modal fade" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel" tabindex="-1" id="qType">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class=" container padding-8  white">
+                        <button ng-click="editQuestion(1)" class="btn btn-default btn-block white">问答</button>
+                        <button ng-click="editQuestion(2)" class="btn btn-default btn-block white">投票</button>
+                        <button ng-click="editQuestion(3)" class="btn btn-default btn-block white">随机分组</button>
+                    </div>
+                </div>
+            </div>
         </div>
+    <div style="position: fixed;bottom:8px;width: 100%;" >
         <div class="container">
-            <button ng-click="showQuestionType()" class="btn btn-default btn-block normal-blue">发布问题</button>
+            <button data-toggle="modal" data-target="#qType" class="btn btn-default btn-block normal-blue">发布问题</button>
         </div>
     </div>
+
+
 </div>
     <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.js"></script>
     <script src="../../js/jquery.cookie.js"></script>
     <script src="../../js/angular.js"></script>
     <script src="../../js/globle.js"></script>

@@ -17,3 +17,13 @@ String.prototype.paragraph=function () {
 
     return result;
 }
+
+function show_bottom(id,bottom) {
+    console.log($(window).height()+" "+$("#"+id).height());
+    $('#'+id).on('show.bs.modal', function () {  // 执行一些动作...}
+        $(this).css({
+            "margin-top":$(window).height()-$("#"+id).height()-bottom+"px"
+        });
+    });
+}
+
