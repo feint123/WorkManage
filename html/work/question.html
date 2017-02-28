@@ -50,15 +50,15 @@
 
         </div>
     </div>
-    <div class="jumbotron sgray-8 padding-8" ng-hide="!submited">
-        <div class="row ">
-            <div class="column col-xs-12 "><h5 >*信息提交成功,可以选择继续编辑或返回首页</h5></div>
+    <div class="jumbotron sgray-8 padding-8 footer" ng-show="submited">
+        <div class="row padding-8">
+            <div class="column pull-left "><h4>信息提交成功,可以选择继续编辑或返回首页</h4></div>
         </div>
-        <div class="row">
-            <div class="column col-xs-3">
+        <div class="row padding-8">
+            <div class="column pull-left">
                 <a href="index.html" class="btn btn-default normal-red">返回首页</a>
             </div>
-            <div class="column col-xs-3">
+            <div class="column pull-left">
                 <button ng-click="reset()" class="btn btn-default normal-blue">继续编辑</button>
             </div>
         </div>
