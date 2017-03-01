@@ -5,8 +5,8 @@ $(".quesType").hide();
 var app=angular.module('index',[]);
 
 app.controller('indexController',function($scope,$http){
-    if(fei.cache().getCache("sNum")==undefined)
-        window.location="../user/login.html";
+    // if(fei.cache().getCache("sNum")==undefined)
+    //     window.location="../user/login.html";
     $("#app").css("display","block")
     $scope.loadList=false;
     $scope.page=1;
